@@ -1,0 +1,16 @@
+{
+  "values": [
+    "#minecraft:fire",
+    "#minecraft:campfires",
+    "minecraft:lava",
+    "minecraft:magma_block",
+    "minecraft:cactus",
+    "minecraft:sweet_berry_bush",
+    "minecraft:wither_rose",
+    "minecraft:powder_snow",
+    "minecraft:cobweb",
+    "minecraft:nether_portal",
+    "minecraft:end_portal",
+    "minecraft:end_gateway"
+  ]
+}

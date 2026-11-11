@@ -1,0 +1,181 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'idea'
+    id 'net.neoforged.moddev' version '2.0.148'
+}
+
+version = mod_version
+group = mod_group_id
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        name = "RedlanceMinecraft"
+        url = uri("https://repo.redlance.org/public")
+    }
+    maven {
+        name = 'GeckoLib'
+        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        content {
+            includeGroupByRegex("software\\.bernie.*")
+            includeGroup("com.eliotlash.mclib")
+        }
+    }
+}
+
+base {
+    archivesName = mod_id
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+// Ships a sources jar next to the mod jar, so projects that use DiceLib from libs/ can read the code in their IDE.
+java { withSourcesJar() }
+// the licence travels with both jars
+tasks.withType(Jar).configureEach { from('COPYING', 'COPYING.LESSER') }
+
+// examples: every full example class in the DiceLib guide (docs/build_guide.py copies them into the pages). Compiled
+// only, and not in the built jar.
+sourceSets {
+    examples {
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+}
+configurations {
+    examplesImplementation.extendsFrom implementation
+    examplesRuntimeOnly.extendsFrom runtimeOnly
+}
+// `check` (and so `build`) compiles them, so a library change that breaks an example breaks the build
+tasks.named('check') { dependsOn 'compileExamplesJava' }
+
+// Keeps parameter names in the class files, so command arguments without an explicit name use the Java parameter name.
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs << '-parameters'
+}
+
+neoForge {
+    version = project.neo_version
+
+    parchment {
+        mappingsVersion = project.parchment_mappings_version
+        minecraftVersion = project.parchment_minecraft_version
+    }
+
+    runs {
+        client {
+            client()
+        }
+
+        server {
+            server()
+            programArgument '--nogui'
+        }
+
+        data {
+            data()
+            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+        }
+
+        configureEach {
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
+            logLevel = org.slf4j.event.Level.DEBUG
+        }
+    }
+
+    mods {
+        "${mod_id}" {
+            sourceSet(sourceSets.main)
+        }
+    }
+}
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+neoForge.addModdingDependenciesTo(sourceSets.examples)
+
+dependencies {
+    implementation "com.zigythebird.playeranim:PlayerAnimationLibNeo:${pal_version}"
+    implementation "software.bernie.geckolib:geckolib-neoforge-${minecraft_version}:${geckolib_version}"
+}
+
+configurations.configureEach {
+    resolutionStrategy {
+        force 'com.google.code.gson:gson:2.10.1'
+        force 'org.slf4j:slf4j-api:2.0.16'
+        force 'it.unimi.dsi:fastutil:8.5.15'
+        force 'io.netty:netty-buffer:4.1.115.Final'
+        force 'io.netty:netty-common:4.1.115.Final'
+    }
+}
+
+var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
+    var replaceProperties = [minecraft_version      : minecraft_version,
+                             minecraft_version_range: minecraft_version_range,
+                             neo_version            : neo_version,
+                             neo_version_range      : neo_version_range,
+                             loader_version_range   : loader_version_range,
+                             mod_id                 : mod_id,
+                             mod_name               : mod_name,
+                             mod_license            : mod_license,
+                             mod_version            : mod_version,
+                             mod_authors            : mod_authors,
+                             mod_description        : mod_description]
+    inputs.properties replaceProperties
+    expand replaceProperties
+    from "src/main/templates"
+    into "build/generated/sources/modMetadata"
+}
+sourceSets.main.resources.srcDir generateModMetadata
+neoForge.ideSyncTask generateModMetadata
+
+// deployJar: builds the jar and sources jar and copies them into the libs/ folder of every project listed in
+// dicelib_deploy_to (paths separated by ';', relative to this folder). Older dicelib jars there are removed first, so a
+// project's `fileTree(dir: 'libs', include: 'dicelib-*.jar')` always finds exactly one.
+var deployTargets = providers.gradleProperty('dicelib_deploy_to').getOrElse('')
+        .split(';').collect { it.trim() }.findAll { !it.isEmpty() }
+var deployTasks = []
+deployTargets.eachWithIndex { String target, int i ->
+    var folder = file(target)
+    var clean = tasks.register("cleanDeploy${i}", Delete) {
+        delete fileTree(folder) { include 'dicelib-*.jar' }
+    }
+    deployTasks << tasks.register("deployJar${i}", Copy) {
+        dependsOn clean
+        from tasks.named('jar')
+        from tasks.named('sourcesJar')
+        into folder
+    }
+}
+tasks.register('deployJar') {
+    group = 'build'
+    description = 'Copies the DiceLib jar and sources jar into each project in dicelib_deploy_to.'
+    dependsOn deployTasks
+}
+
+publishing {
+    publications {
+        // `./gradlew publishToMavenLocal` puts org._50dozenhits:dicelib:<version> and its sources in ~/.m2, for projects
+        // that would rather name a dependency than keep a jar in libs/
+        register('mavenJava', MavenPublication) {
+            artifactId = mod_id
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url "file://${project.projectDir}/repo"
+        }
+    }
+}
+
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
+}
+
+// settings for this machine only
+if (file('local.gradle').exists()) apply from: 'local.gradle'
