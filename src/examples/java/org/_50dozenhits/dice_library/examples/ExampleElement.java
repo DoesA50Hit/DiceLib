@@ -2,7 +2,7 @@ package org._50dozenhits.dice_library.examples;
 
 import java.util.Locale;
 
-// From the DiceLib Guide, Command Framework. docs/build_guide.py copies this class back into that page.
+// From the wiki page Command Framework.
 public enum ExampleElement {
     METAL, STEAM, INK, MUSIC;
 

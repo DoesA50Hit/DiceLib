@@ -10,7 +10,7 @@ import org._50dozenhits.dice_library.client.render.bodypart.BodyParts;
 
 import java.util.List;
 
-// From the DiceLib Guide, Body Parts. docs/build_guide.py copies this class back into that page.
+// From the wiki page Body Parts.
 @EventBusSubscriber(modid = MyMod.MODID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
 public final class ExampleParts {
     public static final ResourceLocation HORNS = MyMod.id("horns");

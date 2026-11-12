@@ -9,7 +9,7 @@ import org._50dozenhits.dice_library.combat.Heals;
 import org._50dozenhits.dice_library.combat.Zones;
 import org._50dozenhits.dice_library.visual.Fx;
 
-// From the DiceLib Guide, Zones. docs/build_guide.py copies this class back into that page.
+// From the wiki page Zones.
 public final class MendingSpring {
     // A healing spring at the caster's feet for 5 seconds. Call it from an item's use or a boss's attack.
     public static void place(LivingEntity caster) {

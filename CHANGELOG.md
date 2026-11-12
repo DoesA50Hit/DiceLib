@@ -27,7 +27,7 @@ The first release: the helpers that came out of Hoard of Deviations, made into a
 - `Zone.onEnter` and `Zone.onExit`.
 - `FloatingItem.sticksToTarget()` keeps a thrown object in the entity it hit, and `stuckIn()` says which.
 - `@OptionalArg` and `@Suggest` for command parameters.
-- `./gradlew publishToMavenLocal` publishes `org._50dozenhits:dicelib`.
+- Published to Maven Central as `io.github.doesa50hit:dicelib`, with sources and Javadoc.
 - `HologramScreen`: a hologram built like a vanilla screen, with widgets, textures, left and right clicks, the scroll
   wheel and typing. `PanelUi` gains `mouseClicked`, `mouseScrolled`, `update`, `animated` and `removed`.
 - Hologram messages: a custom UI sends its own data to the server with `send(action, tag)`, received by

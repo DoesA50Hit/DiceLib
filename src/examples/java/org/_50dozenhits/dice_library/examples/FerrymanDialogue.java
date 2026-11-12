@@ -13,7 +13,7 @@ import org._50dozenhits.dice_library.dialogue.Dialogues.DialogueEvent;
 import org._50dozenhits.dice_library.dialogue.Dialogues.EndReason;
 import org._50dozenhits.dice_library.ui.UiActions;
 
-// From the DiceLib Guide, Dialogue. docs/build_guide.py copies this class back into that page.
+// From the wiki page Dialogue.
 @EventBusSubscriber(modid = MyMod.MODID)
 public final class FerrymanDialogue {
     // the tree in data/mymod/dicelib/dialogues/example/ferryman.json

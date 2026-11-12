@@ -7,7 +7,7 @@ import org._50dozenhits.dice_library.combat.Targets;
 import org._50dozenhits.dice_library.motion.Dashes;
 import org._50dozenhits.dice_library.visual.BodyPoints;
 
-// From the DiceLib Guide, Movement. docs/build_guide.py copies this class back into that page.
+// From the wiki page Movement.
 public final class ExampleLunge {
     // A short dash along the ground that cuts each enemy in the way once.
     public static void lunge(LivingEntity caster) {

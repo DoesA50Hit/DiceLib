@@ -11,7 +11,7 @@ import org._50dozenhits.dice_library.command.CommandRegistry.LiteralArg;
 import org._50dozenhits.dice_library.command.CommandRegistry.Permission;
 import org._50dozenhits.dice_library.command.CommandRegistry.SenderArg;
 
-// From the DiceLib Guide, Command Framework. docs/build_guide.py copies this class back into that page.
+// From the wiki page Command Framework.
 @Command("warden")
 @Permission(value = "mymod.warden", permissionLevel = Permission.PermissionLevel.PLAYER)
 public class WardenCommand {

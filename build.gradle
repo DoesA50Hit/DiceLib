@@ -1,15 +1,14 @@
 plugins {
     id 'java-library'
-    id 'maven-publish'
     id 'idea'
     id 'net.neoforged.moddev' version '2.0.148'
+    id 'com.vanniktech.maven.publish' version '0.34.0'
 }
 
 version = mod_version
 group = mod_group_id
 
 repositories {
-    mavenLocal()
     mavenCentral()
     maven {
         name = "RedlanceMinecraft"
@@ -35,8 +34,7 @@ java { withSourcesJar() }
 // the licence travels with both jars
 tasks.withType(Jar).configureEach { from('COPYING', 'COPYING.LESSER') }
 
-// examples: every full example class in the DiceLib guide (docs/build_guide.py copies them into the pages). Compiled
-// only, and not in the built jar.
+// examples: the full example classes from the wiki. Compiled only, and not in the built jar.
 sourceSets {
     examples {
         compileClasspath += sourceSets.main.output
@@ -154,18 +152,37 @@ tasks.register('deployJar') {
     dependsOn deployTasks
 }
 
-publishing {
-    publications {
-        // `./gradlew publishToMavenLocal` puts org._50dozenhits:dicelib:<version> and its sources in ~/.m2, for projects
-        // that would rather name a dependency than keep a jar in libs/
-        register('mavenJava', MavenPublication) {
-            artifactId = mod_id
-            from components.java
+// Maven Central. `./gradlew publishToMavenCentral` uploads a signed release to the Central Portal, where it waits for
+// you to press Publish. It reads mavenCentralUsername, mavenCentralPassword and the signing key from
+// ~/.gradle/gradle.properties.
+mavenPublishing {
+    coordinates(mod_group_id, mod_id, mod_version)
+    publishToMavenCentral()
+    signAllPublications()
+
+    pom {
+        name = mod_name
+        description = 'A library of building blocks for NeoForge 1.21.1 mods.'
+        url = 'https://github.com/DoesA50Hit/DiceLib'
+        inceptionYear = '2026'
+        licenses {
+            license {
+                name = 'GNU Lesser General Public License, version 3'
+                url = 'https://www.gnu.org/licenses/lgpl-3.0.txt'
+                distribution = 'repo'
+            }
         }
-    }
-    repositories {
-        maven {
-            url "file://${project.projectDir}/repo"
+        developers {
+            developer {
+                id = 'DoesA50Hit'
+                name = mod_authors
+                url = 'https://github.com/DoesA50Hit'
+            }
+        }
+        scm {
+            url = 'https://github.com/DoesA50Hit/DiceLib'
+            connection = 'scm:git:https://github.com/DoesA50Hit/DiceLib.git'
+            developerConnection = 'scm:git:ssh://git@github.com/DoesA50Hit/DiceLib.git'
         }
     }
 }

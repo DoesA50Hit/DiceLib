@@ -10,7 +10,7 @@ import net.minecraft.world.phys.Vec3;
 import org._50dozenhits.dice_library.hologram.Hologram;
 import org._50dozenhits.dice_library.hologram.Holograms;
 
-// From the DiceLib Guide, Looks and Custom UIs. docs/build_guide.py copies this class back into that page.
+// From the wiki page Looks and Custom UIs.
 public final class ShopCounter {
     private static final String COINS = "mymod_coins";
 

@@ -5,7 +5,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import org._50dozenhits.dice_library.combat.Heals;
 
-// From the DiceLib Guide, Healing. docs/build_guide.py copies this class back into that page.
+// From the wiki page Healing.
 @EventBusSubscriber(modid = MyMod.MODID)
 public final class HealerRewards {
     // A player who heals someone else earns a point of experience per health healed. An arrow or a spring of theirs

@@ -13,7 +13,7 @@ import org._50dozenhits.dice_library.ui.UiActions;
 
 import java.util.List;
 
-// From the DiceLib Guide, Holograms. docs/build_guide.py copies this class back into that page.
+// From the wiki page Holograms.
 public final class PartyBoard {
     // A board on a wall. Players tagged "party" see it and can press its buttons. Operators see it too but can't
     // press anything. Anyone in the party can leave, and only a player flagged as leader can open the way down.

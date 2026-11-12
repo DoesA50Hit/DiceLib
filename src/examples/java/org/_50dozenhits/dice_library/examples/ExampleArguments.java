@@ -8,7 +8,7 @@ import net.minecraft.network.chat.Component;
 import org._50dozenhits.dice_library.command.CommandRegistry;
 import java.util.Arrays;
 
-// From the DiceLib Guide, Command Framework. docs/build_guide.py copies this class back into that page.
+// From the wiki page Command Framework.
 public final class ExampleArguments {
     private static final DynamicCommandExceptionType UNKNOWN =
             new DynamicCommandExceptionType(id -> Component.literal("Unknown element " + id));

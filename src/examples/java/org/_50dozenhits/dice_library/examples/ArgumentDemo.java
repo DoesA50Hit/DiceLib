@@ -43,7 +43,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
-// From the DiceLib Guide, Command Framework. docs/build_guide.py copies this class back into that page.
+// From the wiki page Command Framework.
 @Command("argdemo")
 @Permission(value = "mymod.argdemo", permissionLevel = Permission.PermissionLevel.GAMEMASTER)
 public class ArgumentDemo {

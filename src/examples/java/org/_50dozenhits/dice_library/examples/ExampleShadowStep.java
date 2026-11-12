@@ -7,7 +7,7 @@ import org._50dozenhits.dice_library.combat.Targets;
 import org._50dozenhits.dice_library.motion.Teleports;
 import org._50dozenhits.dice_library.visual.Fx;
 
-// From the DiceLib Guide, Movement. docs/build_guide.py copies this class back into that page.
+// From the wiki page Movement.
 // Each method returns false when the caster went nowhere, so the ability that called it can skip its cost.
 public final class ExampleShadowStep {
     // Up to 8 blocks ahead, with a trail of smoke behind.

@@ -5,7 +5,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-// From the DiceLib Guide, Command Framework. docs/build_guide.py copies this class back into that page.
+// From the wiki page Command Framework.
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.PARAMETER)
 public @interface OnOffArg {

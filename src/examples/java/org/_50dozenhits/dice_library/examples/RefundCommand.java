@@ -10,7 +10,7 @@ import org._50dozenhits.dice_library.command.CommandRegistry.Execute;
 import org._50dozenhits.dice_library.command.CommandRegistry.IntegerArg;
 import org._50dozenhits.dice_library.command.CommandRegistry.SenderArg;
 
-// From the DiceLib Guide, Command Framework. docs/build_guide.py copies this class back into that page.
+// From the wiki page Command Framework.
 @Command("refund")
 public class RefundCommand {
     private static final SimpleCommandExceptionType NOTHING_SPENT =

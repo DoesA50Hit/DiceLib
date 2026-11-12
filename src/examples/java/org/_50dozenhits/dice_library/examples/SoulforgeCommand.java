@@ -13,7 +13,7 @@ import org._50dozenhits.dice_library.command.CommandRegistry.Permission;
 import org._50dozenhits.dice_library.command.CommandRegistry.SenderArg;
 import org._50dozenhits.dice_library.command.CommandRegistry.TextArg;
 
-// From the DiceLib Guide, Command Framework. docs/build_guide.py copies this class back into that page.
+// From the wiki page Command Framework.
 @Command(value = {"soulforge", "sf"}, subCommands = {SoulforgeCommand.Status.class, SoulforgeCommand.Tune.class})
 @Permission(value = "mymod.soulforge", permissionLevel = Permission.PermissionLevel.PLAYER)
 public class SoulforgeCommand {

@@ -9,7 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import org._50dozenhits.dice_library.client.hologram.HologramScreen;
 import org._50dozenhits.dice_library.hologram.Holograms.HologramPayload;
 
-// From the DiceLib Guide, Looks and Custom UIs. docs/build_guide.py copies this class back into that page.
+// From the wiki page Looks and Custom UIs.
 public final class ShopScreen extends HologramScreen {
     public static final ResourceLocation ID = MyMod.id("shop");
     private static final ResourceLocation BACKGROUND = MyMod.id("textures/gui/shop.png");

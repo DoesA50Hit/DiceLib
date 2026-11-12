@@ -2,7 +2,7 @@ package org._50dozenhits.dice_library.examples;
 
 import org._50dozenhits.dice_library.prop.TetherLook;
 
-// From the DiceLib Guide, Props. docs/build_guide.py copies this class back into that page.
+// From the wiki page Props.
 public final class ExampleTethers {
     // A chain of thorn links. Each link is 0.26 blocks across and 0.4 long, with one every 0.28 blocks, so they
     // overlap a little. minLight(6) keeps it readable in the dark, and breakFx plays where a breakable tether snaps.

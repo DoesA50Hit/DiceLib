@@ -9,7 +9,7 @@ import org._50dozenhits.dice_library.hologram.Holograms;
 import org._50dozenhits.dice_library.ui.Audience;
 import org._50dozenhits.dice_library.ui.UiActions;
 
-// From the DiceLib Guide, Holograms. docs/build_guide.py copies this class back into that page.
+// From the wiki page Holograms.
 public final class PathChoice {
     // A menu in front of one player that only they see. It belongs to a quest step: it closes when the player's
     // "on_crossroads_quest" flag is cleared, and by itself after 30 seconds untouched.

@@ -9,7 +9,7 @@ import org._50dozenhits.dice_library.dialogue.Speech;
 import org._50dozenhits.dice_library.hologram.MobPanels;
 import org._50dozenhits.dice_library.hologram.MobPanels.MobPanel;
 
-// From the DiceLib Guide, Dialogue. docs/build_guide.py copies this class back into that page.
+// From the wiki page Dialogue.
 public final class BossTaunts {
     // A panel for the fight, shown to everyone within 48 blocks. Keep what show() returns to change it later.
     public static MobPanel showPanel(LivingEntity boss) {

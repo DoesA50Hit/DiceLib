@@ -8,7 +8,7 @@ import org._50dozenhits.dice_library.command.CommandRegistry.FloatArg;
 import org._50dozenhits.dice_library.command.CommandRegistry.Permission;
 import org._50dozenhits.dice_library.command.CommandRegistry.SenderArg;
 
-// From the DiceLib Guide, Command Framework. docs/build_guide.py copies this class back into that page.
+// From the wiki page Command Framework.
 @Command("heal")
 @Permission(value = "mymod.heal", permissionLevel = Permission.PermissionLevel.GAMEMASTER)
 public class HealCommand {

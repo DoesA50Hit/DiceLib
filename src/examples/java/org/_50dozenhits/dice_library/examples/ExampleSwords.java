@@ -11,7 +11,7 @@ import org._50dozenhits.dice_library.combat.Targets;
 import org._50dozenhits.dice_library.prop.Formation;
 import org._50dozenhits.dice_library.state.Scheduler;
 
-// From the DiceLib Guide, Props. docs/build_guide.py copies this class back into that page.
+// From the wiki page Props.
 @EventBusSubscriber(modid = MyMod.MODID)
 public final class ExampleSwords {
     // The fan. Each new object in it is an iron sword, and one that vanishes plays this effect.
